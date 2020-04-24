@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -46,16 +45,12 @@
             android:textColor="@android:color/black"
             android:text="WhatsApp will send an SMS message to verify your phone number.What's my number?"/>
 
-        <Spinner
-            android:id="@+id/spinner_country"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <TextView
@@ -77,17 +72,24 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:inputType="phone"
-                android:maxLength="13"
                 android:maxLines="1"
                 android:hint="phone number"/>
         </LinearLayout>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:layout_marginTop="15dp"
             android:text="Carrie SMS charge may apply"/>
+
+        <EditText
+            android:id="@+id/ed_code"
+            android:layout_width="200dp"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:maxLength="6"
+            android:inputType="number"
+            android:hint="Enter Code "/>
     </LinearLayout>
 
 
