@@ -37,37 +37,7 @@ public class CallsFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         List<CallList> lists = new ArrayList<>();
-
-        lists.add(new CallList(
-                "001",
-                "Justin BB",
-                "15/04/2020 , 9:24 pm",
-                "https://www.biography.com/.image/t_share/MTM2OTI2NTY2Mjg5NTE2MTI5/justin_bieber_2015_photo_courtesy_dfree_shutterstock_348418241_croppedjpg.jpg",
-                "income"));
-
-        lists.add(new CallList(
-                "001",
-                "Justin BB",
-                "15/04/2020 , 9:25 pm",
-                "https://www.biography.com/.image/t_share/MTM2OTI2NTY2Mjg5NTE2MTI5/justin_bieber_2015_photo_courtesy_dfree_shutterstock_348418241_croppedjpg.jpg",
-                "missed"));
-
-        lists.add(new CallList(
-                "001",
-                "Justin BB",
-                "15/04/2020 , 9:27 pm",
-                "https://www.biography.com/.image/t_share/MTM2OTI2NTY2Mjg5NTE2MTI5/justin_bieber_2015_photo_courtesy_dfree_shutterstock_348418241_croppedjpg.jpg",
-                "income"));
-
-        lists.add(new CallList(
-                "001",
-                "Justin BB",
-                "15/04/2020 , 9:20 pm",
-                "https://www.biography.com/.image/t_share/MTM2OTI2NTY2Mjg5NTE2MTI5/justin_bieber_2015_photo_courtesy_dfree_shutterstock_348418241_croppedjpg.jpg",
-                "out"));
-
-
-        recyclerView.setAdapter(new CallListAdapter(lists,getContext()));
+        //recyclerView.setAdapter(new CallListAdapter(lists,getContext()));
         return view;
     }
 }

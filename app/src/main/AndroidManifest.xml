@@ -12,14 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.auth.PhoneLoginActivity"></activity>
+        <activity android:name=".view.auth.SetUserInfoActivity"> <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
+        <activity android:name=".view.auth.PhoneLoginActivity" />
         <activity android:name=".view.starup.WelcomeScreenActivity" />
         <activity android:name=".view.starup.SplashScreenActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".view.MainActivity" />
     </application>

@@ -35,11 +35,12 @@ public class ChatsFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        list.add(new Chatlist("11","Justin BB","hello frie","15/04/2020","https://www.biography.com/.image/t_share/MTM2OTI2NTY2Mjg5NTE2MTI5/justin_bieber_2015_photo_courtesy_dfree_shutterstock_348418241_croppedjpg.jpg"));
-        list.add(new Chatlist("22","Selena GM","hello frie","15/04/2020","https://static.billboard.com/files/media/07-selena-gomez-hair-evolution-billboard-1548-1024x677.jpg"));
-        list.add(new Chatlist("33","six 9","hello frie","15/04/2020","https://ichef.bbci.co.uk/news/410/cpsprodpb/12CFB/production/_104415077_tekashi69_976.jpg"));
+        //list.add(new Chatlist("11","Justin BB","hello frie","15/04/2020","https://www.biography.com/.image/t_share/MTM2OTI2NTY2Mjg5NTE2MTI5/justin_bieber_2015_photo_courtesy_dfree_shutterstock_348418241_croppedjpg.jpg"));
+        //list.add(new Chatlist("22","Selena GM","hello frie","15/04/2020","https://static.billboard.com/files/media/07-selena-gomez-hair-evolution-billboard-1548-1024x677.jpg"));
+        //list.add(new Chatlist("33","six 9","hello frie","15/04/2020","https://ichef.bbci.co.uk/news/410/cpsprodpb/12CFB/production/_104415077_tekashi69_976.jpg"));
+//
+        //recyclerView.setAdapter(new ChatListAdapter(list,getContext()));
 
-        recyclerView.setAdapter(new ChatListAdapter(list,getContext()));
 
         return view;
     }

@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,5 +12,47 @@
        android:id="@+id/recyclerView"
        android:layout_width="match_parent"
        android:layout_height="match_parent"/>
+   <LinearLayout
+       android:id="@+id/ln_invite"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:gravity="center_horizontal"
+       android:layout_marginTop="30dp"
+       android:orientation="vertical">
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Invite your firends"
+          android:textSize="25dp"
+          android:textColor="@android:color/black"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="10dp"
+          android:layout_marginBottom="20dp"
+          android:gravity="center_horizontal"
+          android:text="None of your contacts are using WhatsApp.\nUse the button below to invite them."/>
+
+      <Button
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="#089A14"
+          android:textColor="@android:color/white"
+          android:layout_marginStart="30dp"
+          android:layout_marginEnd="30dp"
+          android:text="Invite a friend"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="10dp"
+          android:layout_marginBottom="20dp"
+          android:gravity="center_horizontal"
+          android:text="Chat with your friends who are use WhatsApp on iphone, \nAndroid, or KaiOS phone"/>
+
+   </LinearLayout>
 
 </FrameLayout>
+</layout>
