@@ -7,9 +7,23 @@
         android:icon="@android:drawable/ic_menu_search"
         android:title="Search"
         app:showAsAction="always"/>
-    <item
-        android:id="@+id/menu_more"
-        android:icon="@drawable/ic_more_vert_black_24dp"
-        android:title="Search"
-        app:showAsAction="always"/>
+    <group
+        android:id="@+id/action_more">
+        <item
+            android:id="@+id/action_new_group"
+            android:title="New Group"/>
+        <item
+            android:id="@+id/action_new_broadcast"
+            android:title="New broadcast" />
+        <item
+            android:id="@+id/action_wa_web"
+            android:title="WhatsApp Web" />
+        <item
+            android:id="@+id/action_starred_message"
+            android:title="Starred message" />
+        <item
+            android:id="@+id/action_settings"
+            android:title="Settings" />
+    </group>
+
 </menu>

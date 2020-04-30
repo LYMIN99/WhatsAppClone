@@ -36,6 +36,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.firebase:firebase-auth:19.3.0'
     implementation 'com.google.firebase:firebase-firestore:21.4.2'
+    implementation 'com.google.firebase:firebase-storage:19.1.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
@@ -48,4 +49,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:3.7.0'
 
     implementation 'com.google.firebase:firebase-auth:19.3.0'
+
+    //Zoom ImageView
+    implementation 'com.jsibbold:zoomage:1.2.0'
 }
