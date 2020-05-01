@@ -14,8 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.chats.NewChatsActivity"></activity>
-        <activity android:name=".view.display.ViewImageActivity" />
+        <activity android:name=".view.display.ViewImageActivity"></activity>
         <activity android:name=".view.profile.ProfileActivity" />
         <activity
             android:name=".view.settings.SettingsActivity"
