@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
@@ -45,6 +46,7 @@ import com.littleit.whatsappclone.common.Common;
 import com.littleit.whatsappclone.databinding.ActivityProfileBinding;
 import com.littleit.whatsappclone.model.user.Users;
 import com.littleit.whatsappclone.view.display.ViewImageActivity;
+import com.littleit.whatsappclone.view.starup.SplashScreenActivity;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -109,6 +111,13 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(intent, activityOptionsCompat.toBundle());
 
 
+            }
+        });
+
+        binding.btnLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialogSignOut();
             }
         });
 
@@ -298,5 +307,28 @@ public class ProfileActivity extends AppCompatActivity {
                 getInfo();
             }
         });
+    }
+
+    private void showDialogSignOut(){
+        final AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
+        builder.setMessage("Do you want to sign out?");
+        builder.setPositiveButton("Sign out", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(ProfileActivity.this, SplashScreenActivity.class));
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

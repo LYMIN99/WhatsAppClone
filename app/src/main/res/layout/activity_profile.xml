@@ -227,6 +227,18 @@
             android:layout_height="1dp"
             android:background="#EAEAEA"/>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_log_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SIGN OUT"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="15dp"
+        android:background="@android:color/transparent"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textColor="@color/colorPrimary"/>
 </LinearLayout>
 
 </layout>

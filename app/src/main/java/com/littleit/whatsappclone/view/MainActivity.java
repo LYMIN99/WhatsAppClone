@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.littleit.whatsappclone.R;
@@ -19,6 +20,7 @@ import com.littleit.whatsappclone.databinding.ActivityMainBinding;
 import com.littleit.whatsappclone.menu.CallsFragment;
 import com.littleit.whatsappclone.menu.ChatsFragment;
 import com.littleit.whatsappclone.menu.StatusFragment;
+import com.littleit.whatsappclone.view.contact.ContactsActivity;
 import com.littleit.whatsappclone.view.settings.SettingsActivity;
 
 import java.util.ArrayList;
@@ -35,6 +37,13 @@ public class MainActivity extends AppCompatActivity {
         setUpWithViewPager(binding.viewPager);
         binding.tabLayout.setupWithViewPager(binding.viewPager);
         setSupportActionBar(binding.toolbar);
+
+        binding.fabAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ContactsActivity.class));
+            }
+        });
 
         binding.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -122,7 +131,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 switch (index){
-                    case 0 : binding.fabAction.setImageDrawable(getDrawable(R.drawable.ic_chat_black_24dp)); break;
+                    case 0 : binding.fabAction.setImageDrawable(getDrawable(R.drawable.ic_chat_black_24dp));
+                                binding.fabAction.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        startActivity(new Intent(MainActivity.this, ContactsActivity.class));
+                                    }
+                                });
+
+                    break;
                     case 1 : binding.fabAction.setImageDrawable(getDrawable(R.drawable.ic_camera_alt_black_24dp)); break;
                     case 2 : binding.fabAction.setImageDrawable(getDrawable(R.drawable.ic_call_black_24dp)); break;
                 }
