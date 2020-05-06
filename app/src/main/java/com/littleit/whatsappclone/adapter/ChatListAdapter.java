@@ -1,6 +1,7 @@
 package com.littleit.whatsappclone.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.littleit.whatsappclone.R;
 import com.littleit.whatsappclone.model.Chatlist;
+import com.littleit.whatsappclone.view.chats.ChatsActivity;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.List;
@@ -35,7 +37,7 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.Holder
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
 
-        Chatlist chatlist = list.get(position);
+        final Chatlist chatlist = list.get(position);
 
         holder.tvName.setText(chatlist.getUserName());
         holder.tvDesc.setText(chatlist.getDescription());
@@ -43,6 +45,16 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.Holder
 
         // for image we need library ...
         Glide.with(context).load(chatlist.getUrlProfile()).into(holder.profile);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, ChatsActivity.class)
+                        .putExtra("userID",chatlist.getUserID())
+                        .putExtra("userName",chatlist.getUserName())
+                        .putExtra("userProfile",chatlist.getUrlProfile()));
+            }
+        });
     }
 
     @Override
