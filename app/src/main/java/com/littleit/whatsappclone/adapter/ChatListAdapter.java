@@ -44,7 +44,12 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.Holder
         holder.tvDate.setText(chatlist.getDate());
 
         // for image we need library ...
-        Glide.with(context).load(chatlist.getUrlProfile()).into(holder.profile);
+        if (chatlist.getUrlProfile().equals("")){
+            holder.profile.setImageResource(R.drawable.icon_male_ph);  // set  default image when profile user is null
+        } else {
+            Glide.with(context).load(chatlist.getUrlProfile()).into(holder.profile);
+        }
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

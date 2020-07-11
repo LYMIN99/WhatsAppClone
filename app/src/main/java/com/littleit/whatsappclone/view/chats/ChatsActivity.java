@@ -64,7 +64,13 @@ public class ChatsActivity extends AppCompatActivity {
         if (receiverID!=null){
             Log.d(TAG, "onCreate: receiverID "+receiverID);
             binding.tvUsername.setText(userName);
-            Glide.with(this).load(userProfile).into(binding.imageProfile);
+            if (userProfile != null) {
+                if (userProfile.equals("")){
+                    binding.imageProfile.setImageResource(R.drawable.icon_male_ph);  // set  default image when profile user is null
+                } else {
+                    Glide.with(this).load(userProfile).into( binding.imageProfile);
+                }
+            }
         }
 
         binding.btnBack.setOnClickListener(new View.OnClickListener() {
