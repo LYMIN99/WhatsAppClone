@@ -39,6 +39,7 @@ import java.util.List;
 
 public class ChatsActivity extends AppCompatActivity {
 
+    private static final String TAG = "ChatsActivity";
     private ActivityChatsBinding binding;
     private FirebaseUser firebaseUser;
     private DatabaseReference reference;
@@ -61,6 +62,7 @@ public class ChatsActivity extends AppCompatActivity {
 
 
         if (receiverID!=null){
+            Log.d(TAG, "onCreate: receiverID "+receiverID);
             binding.tvUsername.setText(userName);
             Glide.with(this).load(userProfile).into(binding.imageProfile);
         }
@@ -173,8 +175,11 @@ public class ChatsActivity extends AppCompatActivity {
                     list.clear();
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                         Chats chats = snapshot.getValue(Chats.class);
-                        if (chats != null && chats.getSender().equals(firebaseUser.getUid()) && chats.getReceiver().equals(receiverID)) {
+                        if (chats != null && chats.getSender().equals(firebaseUser.getUid()) && chats.getReceiver().equals(receiverID)
+                            || chats.getReceiver().equals(firebaseUser.getUid()) && chats.getSender().equals(receiverID)
+                        ) {
                             list.add(chats);
+                            Log.d(TAG, "onDataChange: UserName : "+chats.getTextMessage() );
                         }
                     }
                     if (adapder!=null){

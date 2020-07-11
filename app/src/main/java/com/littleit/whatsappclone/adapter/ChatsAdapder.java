@@ -68,7 +68,7 @@ public class ChatsAdapder extends RecyclerView.Adapter<ChatsAdapder.ViewHolder> 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (list.get(position).getSender().equals(firebaseUser.getUid())){
             return MSG_TYPE_RIGHT;
-        }else
+        } else
         {
             return MSG_TYPE_LEFT;
         }
