@@ -20,8 +20,8 @@ import com.littleit.whatsappclone.databinding.ActivityMainBinding;
 import com.littleit.whatsappclone.menu.CallsFragment;
 import com.littleit.whatsappclone.menu.ChatsFragment;
 import com.littleit.whatsappclone.menu.StatusFragment;
-import com.littleit.whatsappclone.view.contact.ContactsActivity;
-import com.littleit.whatsappclone.view.settings.SettingsActivity;
+import com.littleit.whatsappclone.view.activities.contact.ContactsActivity;
+import com.littleit.whatsappclone.view.activities.settings.SettingsActivity;
 
 import java.util.ArrayList;
 import java.util.List;

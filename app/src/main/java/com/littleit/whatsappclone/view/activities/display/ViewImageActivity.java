@@ -1,9 +1,8 @@
-package com.littleit.whatsappclone.view.display;
+package com.littleit.whatsappclone.view.activities.display;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 import com.littleit.whatsappclone.R;

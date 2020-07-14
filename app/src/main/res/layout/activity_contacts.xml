@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".view.contact.ContactsActivity">
+    tools:context=".view.activities.contact.ContactsActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"

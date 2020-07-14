@@ -1,10 +1,9 @@
-package com.littleit.whatsappclone.view.auth;
+package com.littleit.whatsappclone.view.activities.auth;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;

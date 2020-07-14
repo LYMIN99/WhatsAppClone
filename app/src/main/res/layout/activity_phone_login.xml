@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.auth.PhoneLoginActivity">
+    tools:context=".view.activities.auth.PhoneLoginActivity">
 
     <LinearLayout
         android:id="@+id/toolbar"

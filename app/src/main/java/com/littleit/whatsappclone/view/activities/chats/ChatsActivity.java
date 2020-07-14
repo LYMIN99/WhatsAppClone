@@ -1,4 +1,4 @@
-package com.littleit.whatsappclone.view.chats;
+package com.littleit.whatsappclone.view.activities.chats;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -30,6 +29,7 @@ import com.littleit.whatsappclone.R;
 import com.littleit.whatsappclone.adapter.ChatsAdapder;
 import com.littleit.whatsappclone.databinding.ActivityChatsBinding;
 import com.littleit.whatsappclone.model.chat.Chats;
+import com.littleit.whatsappclone.view.activities.profile.UserProfileActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -46,6 +46,8 @@ public class ChatsActivity extends AppCompatActivity {
     private String receiverID;
     private ChatsAdapder adapder;
     private List<Chats>list;
+    private String userProfile,userName;
+    private boolean isActionShown = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +58,9 @@ public class ChatsActivity extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference();
 
         Intent intent = getIntent();
-        String userName = intent.getStringExtra("userName");
+        userName = intent.getStringExtra("userName");
         receiverID = intent.getStringExtra("userID");
-        String userProfile = intent.getStringExtra("userProfile");
+        userProfile = intent.getStringExtra("userProfile");
 
 
         if (receiverID!=null){
@@ -130,6 +132,29 @@ public class ChatsActivity extends AppCompatActivity {
             }
         });
 
+        binding.imageProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ChatsActivity.this, UserProfileActivity.class)
+                .putExtra("userID",receiverID)
+                .putExtra("userProfile",userProfile)
+                .putExtra("userName",userName));
+            }
+        });
+
+        binding.btnFile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isActionShown){
+                    binding.layoutActions.setVisibility(View.GONE);
+                    isActionShown = false;
+                } else {
+                    binding.layoutActions.setVisibility(View.VISIBLE);
+                    isActionShown = true;
+                }
+
+            }
+        });
     }
 
     private void sendTextMessage(String text){

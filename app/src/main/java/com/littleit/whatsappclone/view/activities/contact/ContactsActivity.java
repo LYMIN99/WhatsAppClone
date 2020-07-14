@@ -1,12 +1,10 @@
-package com.littleit.whatsappclone.view.contact;
+package com.littleit.whatsappclone.view.activities.contact;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -14,7 +12,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.auth.User;
 import com.littleit.whatsappclone.R;
 import com.littleit.whatsappclone.adapter.ContactsAdapter;
 import com.littleit.whatsappclone.databinding.ActivityContactsBinding;

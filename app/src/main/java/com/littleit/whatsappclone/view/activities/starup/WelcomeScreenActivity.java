@@ -1,4 +1,4 @@
-package com.littleit.whatsappclone.view.starup;
+package com.littleit.whatsappclone.view.activities.starup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,9 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.littleit.whatsappclone.view.MainActivity;
 import com.littleit.whatsappclone.R;
-import com.littleit.whatsappclone.view.auth.PhoneLoginActivity;
+import com.littleit.whatsappclone.view.activities.auth.PhoneLoginActivity;
 
 public class WelcomeScreenActivity extends AppCompatActivity {
 

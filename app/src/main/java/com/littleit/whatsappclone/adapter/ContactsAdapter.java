@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.littleit.whatsappclone.R;
 import com.littleit.whatsappclone.model.user.Users;
-import com.littleit.whatsappclone.view.chats.ChatsActivity;
+import com.littleit.whatsappclone.view.activities.chats.ChatsActivity;
 
 import java.util.List;
 

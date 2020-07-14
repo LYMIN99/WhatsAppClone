@@ -1,4 +1,4 @@
-package com.littleit.whatsappclone.view.starup;
+package com.littleit.whatsappclone.view.activities.starup;
 
 import androidx.appcompat.app.AppCompatActivity;
 

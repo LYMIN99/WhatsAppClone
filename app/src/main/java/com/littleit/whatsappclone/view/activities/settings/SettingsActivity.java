@@ -1,11 +1,9 @@
-package com.littleit.whatsappclone.view.settings;
+package com.littleit.whatsappclone.view.activities.settings;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,13 +15,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.littleit.whatsappclone.R;
 import com.littleit.whatsappclone.databinding.ActivitySettingsBinding;
-import com.littleit.whatsappclone.model.user.Users;
-import com.littleit.whatsappclone.view.profile.ProfileActivity;
+import com.littleit.whatsappclone.view.activities.profile.ProfileActivity;
 
 import java.util.Objects;
 

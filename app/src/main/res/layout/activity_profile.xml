@@ -9,7 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.profile.ProfileActivity">
+    tools:context=".view.activities.profile.ProfileActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"

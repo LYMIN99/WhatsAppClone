@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.littleit.whatsappclone.R;
 import com.littleit.whatsappclone.model.Chatlist;
-import com.littleit.whatsappclone.view.chats.ChatsActivity;
+import com.littleit.whatsappclone.view.activities.chats.ChatsActivity;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.littleit.whatsappclone.view.profile;
+package com.littleit.whatsappclone.view.activities.profile;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -7,20 +7,16 @@ import androidx.core.app.ActivityOptionsCompat;
 import androidx.databinding.DataBindingUtil;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.text.TextUtils;
-import android.view.Menu;
 import android.view.View;
 import android.view.WindowManager;
 import android.webkit.MimeTypeMap;
@@ -37,20 +33,17 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.auth.User;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.littleit.whatsappclone.R;
 import com.littleit.whatsappclone.common.Common;
 import com.littleit.whatsappclone.databinding.ActivityProfileBinding;
-import com.littleit.whatsappclone.model.user.Users;
-import com.littleit.whatsappclone.view.display.ViewImageActivity;
-import com.littleit.whatsappclone.view.starup.SplashScreenActivity;
+import com.littleit.whatsappclone.view.activities.display.ViewImageActivity;
+import com.littleit.whatsappclone.view.activities.starup.SplashScreenActivity;
 
 import java.util.HashMap;
 import java.util.Objects;
-import java.util.Random;
 
 public class ProfileActivity extends AppCompatActivity {
 

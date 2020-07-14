@@ -14,17 +14,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.chats.ChatsActivity"></activity>
-        <activity android:name=".view.contact.ContactsActivity" />
-        <activity android:name=".view.display.ViewImageActivity" />
-        <activity android:name=".view.profile.ProfileActivity" />
+        <activity android:name=".view.activities.profile.UserProfileActivity"></activity>
+        <activity android:name=".view.activities.chats.ChatsActivity" />
+        <activity android:name=".view.activities.contact.ContactsActivity" />
+        <activity android:name=".view.activities.display.ViewImageActivity" />
+        <activity android:name=".view.activities.profile.ProfileActivity" />
         <activity
-            android:name=".view.settings.SettingsActivity"
+            android:name=".view.activities.settings.SettingsActivity"
             android:parentActivityName=".view.MainActivity" />
-        <activity android:name=".view.auth.SetUserInfoActivity" />
-        <activity android:name=".view.auth.PhoneLoginActivity" />
-        <activity android:name=".view.starup.WelcomeScreenActivity" />
-        <activity android:name=".view.starup.SplashScreenActivity">
+        <activity android:name=".view.activities.auth.SetUserInfoActivity" />
+        <activity android:name=".view.activities.auth.PhoneLoginActivity" />
+        <activity android:name=".view.activities.starup.WelcomeScreenActivity" />
+        <activity android:name=".view.activities.starup.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
