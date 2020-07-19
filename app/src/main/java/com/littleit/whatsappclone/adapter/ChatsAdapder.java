@@ -4,8 +4,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.littleit.whatsappclone.R;
@@ -26,6 +29,11 @@ public class ChatsAdapder extends RecyclerView.Adapter<ChatsAdapder.ViewHolder> 
     public ChatsAdapder(List<Chats> list, Context context) {
         this.list = list;
         this.context = context;
+    }
+
+    public void setList(List<Chats> list){
+        this.list = list;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -52,14 +60,35 @@ public class ChatsAdapder extends RecyclerView.Adapter<ChatsAdapder.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView textMessage;
+        private LinearLayout layoutText, layoutImage;
+        private ImageView imageMessage;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             textMessage = itemView.findViewById(R.id.tv_text_message);
+            layoutImage = itemView.findViewById(R.id.layout_image);
+            layoutText = itemView.findViewById(R.id.layout_text);
+            imageMessage = itemView.findViewById(R.id.image_chat);
         }
         void bind(Chats chats){
+            //Check chat type..
 
-            textMessage.setText(chats.getTextMessage());
+            switch (chats.getType()){
+                case "TEXT" :
+                    layoutText.setVisibility(View.VISIBLE);
+                    layoutImage.setVisibility(View.GONE);
+
+                    textMessage.setText(chats.getTextMessage());
+
+                    break;
+                case "IMAGE" :
+                    layoutText.setVisibility(View.GONE);
+                    layoutImage.setVisibility(View.VISIBLE);
+
+                    Glide.with(context).load(chats.getUrl()).into(imageMessage);
+                    break;
+            }
+
         }
     }
 

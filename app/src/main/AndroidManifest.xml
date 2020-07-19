@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activities.profile.UserProfileActivity"></activity>
+        <activity android:name=".view.activities.display.ReviewSendImageActivity"></activity>
+        <activity android:name=".view.activities.profile.UserProfileActivity" />
         <activity android:name=".view.activities.chats.ChatsActivity" />
         <activity android:name=".view.activities.contact.ContactsActivity" />
         <activity android:name=".view.activities.display.ViewImageActivity" />

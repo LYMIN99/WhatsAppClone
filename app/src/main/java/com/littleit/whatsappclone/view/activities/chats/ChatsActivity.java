@@ -1,14 +1,19 @@
 package com.littleit.whatsappclone.view.activities.chats;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -28,7 +33,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.littleit.whatsappclone.R;
 import com.littleit.whatsappclone.adapter.ChatsAdapder;
 import com.littleit.whatsappclone.databinding.ActivityChatsBinding;
+import com.littleit.whatsappclone.interfaces.OnReadChatCallBack;
+import com.littleit.whatsappclone.managers.ChatService;
 import com.littleit.whatsappclone.model.chat.Chats;
+import com.littleit.whatsappclone.service.FirebaseService;
+import com.littleit.whatsappclone.view.activities.dialog.DialogReviewSendImage;
 import com.littleit.whatsappclone.view.activities.profile.UserProfileActivity;
 
 import java.text.SimpleDateFormat;
@@ -41,27 +50,34 @@ public class ChatsActivity extends AppCompatActivity {
 
     private static final String TAG = "ChatsActivity";
     private ActivityChatsBinding binding;
-    private FirebaseUser firebaseUser;
-    private DatabaseReference reference;
     private String receiverID;
     private ChatsAdapder adapder;
-    private List<Chats>list;
+    private List<Chats>list = new ArrayList<>();
     private String userProfile,userName;
     private boolean isActionShown = false;
+    private ChatService chatService;
+    private int IMAGE_GALLERY_REQUEST = 111;
+    private Uri imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_chats);
 
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference();
+        initialize();
+        initBtnClick();
+        readChats();
+
+    }
+
+    private void initialize(){
 
         Intent intent = getIntent();
         userName = intent.getStringExtra("userName");
         receiverID = intent.getStringExtra("userID");
         userProfile = intent.getStringExtra("userProfile");
 
+        chatService = new ChatService(this,receiverID);
 
         if (receiverID!=null){
             Log.d(TAG, "onCreate: receiverID "+receiverID);
@@ -74,13 +90,6 @@ public class ChatsActivity extends AppCompatActivity {
                 }
             }
         }
-
-        binding.btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
         binding.edMessage.addTextChangedListener(new TextWatcher() {
             @Override
@@ -103,15 +112,25 @@ public class ChatsActivity extends AppCompatActivity {
             }
         });
 
-        initBtnClick();
-
-        list = new ArrayList<>();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL,false);
         layoutManager.setStackFromEnd(true);
         binding.recyclerView.setLayoutManager(layoutManager);
+        adapder = new ChatsAdapder(list,this);
+        binding.recyclerView.setAdapter(adapder);
+    }
 
-        readChats();
+    private void readChats() {
+        chatService.readChatData(new OnReadChatCallBack() {
+            @Override
+            public void onReadSuccess(List<Chats> list) {
+                adapder.setList(list);
+            }
 
+            @Override
+            public void onReadFailed() {
+                Log.d(TAG, "onReadFailed: ");
+            }
+        });
     }
 
     private void initBtnClick(){
@@ -119,8 +138,7 @@ public class ChatsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!TextUtils.isEmpty(binding.edMessage.getText().toString())){
-                    sendTextMessage(binding.edMessage.getText().toString());
-
+                    chatService.sendTextMsg(binding.edMessage.getText().toString());
                     binding.edMessage.setText("");
                 }
             }
@@ -155,80 +173,76 @@ public class ChatsActivity extends AppCompatActivity {
 
             }
         });
-    }
 
-    private void sendTextMessage(String text){
-
-        Date date = Calendar.getInstance().getTime();
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        String today = formatter.format(date);
-
-        Calendar currentDateTime = Calendar.getInstance();
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat df = new SimpleDateFormat("hh:mm a");
-        String currentTime = df.format(currentDateTime.getTime());
-
-        Chats chats = new Chats(
-                today+", "+currentTime,
-                text,
-                "TEXT",
-                firebaseUser.getUid(),
-                receiverID
-        );
-
-        reference.child("Chats").push().setValue(chats).addOnSuccessListener(new OnSuccessListener<Void>() {
+        binding.btnGallery.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSuccess(Void aVoid) {
-                Log.d("Send", "onSuccess: ");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d("Send", "onFailure: "+e.getMessage());
+            public void onClick(View v) {
+                openGallery();
             }
         });
+    }
 
-        //Add to ChatList
-        DatabaseReference chatRef1 = FirebaseDatabase.getInstance().getReference("ChatList").child(firebaseUser.getUid()).child(receiverID);
-        chatRef1.child("chatid").setValue(receiverID);
+    private void openGallery(){
 
-        //
-        DatabaseReference chatRef2 = FirebaseDatabase.getInstance().getReference("ChatList").child(receiverID).child(firebaseUser.getUid());
-        chatRef2.child("chatid").setValue(firebaseUser.getUid());
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "select image"), IMAGE_GALLERY_REQUEST);
 
     }
 
-    private void readChats(){
-        try {
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-            reference.child("Chats").addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    list.clear();
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                        Chats chats = snapshot.getValue(Chats.class);
-                        if (chats != null && chats.getSender().equals(firebaseUser.getUid()) && chats.getReceiver().equals(receiverID)
-                            || chats.getReceiver().equals(firebaseUser.getUid()) && chats.getSender().equals(receiverID)
-                        ) {
-                            list.add(chats);
-                            Log.d(TAG, "onDataChange: UserName : "+chats.getTextMessage() );
-                        }
-                    }
-                    if (adapder!=null){
-                        adapder.notifyDataSetChanged();
-                    }else {
-                        adapder = new ChatsAdapder(list,ChatsActivity.this);
-                        binding.recyclerView.setAdapter(adapder);
-                    }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == IMAGE_GALLERY_REQUEST
+                && resultCode == RESULT_OK
+                && data != null
+                && data.getData() != null){
 
-                }
-            });
-        } catch (Exception e){
-            e.printStackTrace();
+            imageUri = data.getData();
+
+            //uploadToFirebase();
+             try {
+                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+                 reviewImage(bitmap);
+             }catch (Exception e){
+                 e.printStackTrace();
+             }
+
         }
-
     }
+    private void reviewImage(Bitmap bitmap){
+        new DialogReviewSendImage(ChatsActivity.this,bitmap).show(new DialogReviewSendImage.OnCallBack() {
+            @Override
+            public void onButtonSendClick() {
+              // to Upload Image to firebase storage to get url image...
+                if (imageUri!=null){
+                    final ProgressDialog progressDialog = new ProgressDialog(ChatsActivity.this);
+                    progressDialog.setMessage("Sending image...");
+                    progressDialog.show();
+
+                    //hide action buttonss
+                    binding.layoutActions.setVisibility(View.GONE);
+                    isActionShown = false;
+
+                    new FirebaseService(ChatsActivity.this).uploadImageToFireBaseStorage(imageUri, new FirebaseService.OnCallBack() {
+                        @Override
+                        public void onUploadSuccess(String imageUrl) {
+                            // to send chat image//
+                            chatService.sendImage(imageUrl);
+                            progressDialog.dismiss();
+                        }
+
+                        @Override
+                        public void onUploadFailed(Exception e) {
+                           e.printStackTrace();
+                        }
+                    });
+                }
+
+            }
+        });
+    }
+
 }
