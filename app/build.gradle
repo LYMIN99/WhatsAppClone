@@ -53,4 +53,7 @@ dependencies {
 
     //Zoom ImageView
     implementation 'com.jsibbold:zoomage:1.2.0'
+
+    //Add RecordView..
+    implementation 'com.devlomi.record-view:record-view:2.0.1'
 }
