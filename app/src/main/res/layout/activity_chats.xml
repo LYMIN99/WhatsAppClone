@@ -60,9 +60,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/ln_action"
-        android:layout_below="@id/toolbar"/>
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="?actionBarSize"
+        android:layout_marginBottom="65dp"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/layout_actions"
@@ -282,8 +283,6 @@
         </LinearLayout>
     </LinearLayout>
 
-
-
     <com.devlomi.record_view.RecordView
         android:id="@+id/record_view"
         android:visibility="visible"
@@ -317,7 +316,6 @@
         android:tint="@android:color/white"
         android:padding="17dp"
         app:mic_icon="@drawable/recv_ic_mic" />
-
 
 </RelativeLayout>
 </layout>
