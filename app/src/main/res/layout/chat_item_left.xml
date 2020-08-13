@@ -78,12 +78,14 @@
                 </RelativeLayout>
                 <View
                     android:id="@+id/v_length"
-                    android:layout_width="100dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginEnd="15dp"
                     android:layout_height="1dp"
                     android:layout_gravity="center_vertical"
                     android:background="@android:color/black" />
                 <Chronometer
                     android:id="@+id/tv_duration"
+                    android:visibility="gone"
                     android:layout_width="60dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center_vertical"
