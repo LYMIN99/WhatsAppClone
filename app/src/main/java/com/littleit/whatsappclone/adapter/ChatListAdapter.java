@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.littleit.whatsappclone.R;
 import com.littleit.whatsappclone.model.Chatlist;
 import com.littleit.whatsappclone.view.activities.chats.ChatsActivity;
+import com.littleit.whatsappclone.view.activities.dialog.DialogViewUser;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.List;
@@ -58,6 +59,13 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.Holder
                         .putExtra("userID",chatlist.getUserID())
                         .putExtra("userName",chatlist.getUserName())
                         .putExtra("userProfile",chatlist.getUrlProfile()));
+            }
+        });
+
+        holder.profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DialogViewUser(context,chatlist);
             }
         });
     }
