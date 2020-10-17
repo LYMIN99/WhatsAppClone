@@ -97,6 +97,10 @@ public class PhoneLoginActivity extends AppCompatActivity {
                 mResendToken = token;
 
                 binding.btnNext.setText("Confirm");
+                binding.edCode.setVisibility(View.VISIBLE);
+                binding.edCodeCountry.setEnabled(false);
+                binding.edPhone.setEnabled(false);
+
                 progressDialog.dismiss();
 
             }
@@ -133,31 +137,6 @@ public class PhoneLoginActivity extends AppCompatActivity {
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = task.getResult().getUser();
                             startActivity(new Intent(PhoneLoginActivity.this, SetUserInfoActivity.class));
-                            //if (user != null) {
-                            //    String userID = user.getUid();
-                            //    Users users = new Users(userID,
-                            //            "",
-                            //            user.getPhoneNumber(),
-                            //            "",
-                            //            "",
-                            //            "",
-                            //            "",
-                            //            "",
-                            //            "",
-                            //            "");
-//
-                            //    firestore.collection("Users").document(userID).getParent()
-                            //            .add(users).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            //        @Override
-                            //        public void onSuccess(DocumentReference documentReference) {
-                            //
-                            //        }
-                            //    });
-                            //} else {
-                            //    Toast.makeText(getApplicationContext(),"Something Error",Toast.LENGTH_SHORT).show();
-                            //}
-
-                            //startActivity(new Intent(PhoneLoginActivity.this, SetUserInfoActivity.class));
 
                         } else {
 

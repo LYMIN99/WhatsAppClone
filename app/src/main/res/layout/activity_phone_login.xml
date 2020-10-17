@@ -67,6 +67,7 @@
                 android:maxLength="5"
                 android:maxLines="1"
                 android:hint="855"/>
+
             <EditText
                 android:id="@+id/ed_phone"
                 android:layout_width="200dp"
@@ -89,6 +90,7 @@
             android:layout_height="wrap_content"
             android:maxLength="6"
             android:inputType="number"
+            android:visibility="gone"
             android:hint="Enter Code "/>
     </LinearLayout>
 

@@ -10,14 +10,17 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.littleit.whatsappclone.R;
 import com.littleit.whatsappclone.databinding.ActivityMainBinding;
 import com.littleit.whatsappclone.menu.CallsFragment;
+import com.littleit.whatsappclone.menu.CameraFragment;
 import com.littleit.whatsappclone.menu.ChatsFragment;
 import com.littleit.whatsappclone.menu.StatusFragment;
 import com.littleit.whatsappclone.view.activities.contact.ContactsActivity;
@@ -36,6 +39,14 @@ public class MainActivity extends AppCompatActivity {
 
         setUpWithViewPager(binding.viewPager);
         binding.tabLayout.setupWithViewPager(binding.viewPager);
+
+        View tab1 = LayoutInflater.from(this).inflate(R.layout.custom_camera_tab, null);
+        try {
+            binding.tabLayout.getTabAt(0).setCustomView(tab1);
+        }catch (Exception e){e.printStackTrace();}
+
+        binding.viewPager.setCurrentItem(1); // Defualt display CHats tab
+
         setSupportActionBar(binding.toolbar);
 
         binding.fabAction.setOnClickListener(new View.OnClickListener() {
@@ -65,10 +76,13 @@ public class MainActivity extends AppCompatActivity {
     }
     private void setUpWithViewPager(ViewPager viewPager){
         MainActivity.SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new CameraFragment(),"");
         adapter.addFragment(new ChatsFragment(),"Chats");
         adapter.addFragment(new StatusFragment(),"Status");
         adapter.addFragment(new CallsFragment(),"Calls");
         viewPager.setAdapter(adapter);
+
+
     }
     //Add this code
     private static class SectionsPagerAdapter extends FragmentPagerAdapter {
@@ -131,7 +145,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 switch (index){
-                    case 0 : binding.fabAction.setImageDrawable(getDrawable(R.drawable.ic_chat_black_24dp));
+
+                    case 0 :      binding.fabAction.hide(); break;
+                    case 1 :
+                        binding.fabAction.show();
+                        binding.fabAction.setImageDrawable(getDrawable(R.drawable.ic_chat_black_24dp));
                                 binding.fabAction.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
@@ -140,10 +158,11 @@ public class MainActivity extends AppCompatActivity {
                                 });
 
                     break;
-                    case 1 : binding.fabAction.setImageDrawable(getDrawable(R.drawable.ic_camera_alt_black_24dp)); break;
-                    case 2 : binding.fabAction.setImageDrawable(getDrawable(R.drawable.ic_call_black_24dp)); break;
+                    case 2 :
+                        binding.fabAction.show(); binding.fabAction.setImageDrawable(getDrawable(R.drawable.ic_camera_alt_black_24dp)); break;
+                    case 3 :   binding.fabAction.show();  binding.fabAction.setImageDrawable(getDrawable(R.drawable.ic_call_black_24dp)); break;
                 }
-                binding.fabAction.show();
+
             }
         },400);
 

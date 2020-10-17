@@ -224,6 +224,7 @@ public class ChatsActivity extends AppCompatActivity {
             @Override
             public void onReadSuccess(List<Chats> list) {
                 //adapder.setList(list);
+                Log.d(TAG, "onReadSuccess: List "+list.size());
                 binding.recyclerView.setAdapter(new ChatsAdapder(list,ChatsActivity.this));
             }
 
