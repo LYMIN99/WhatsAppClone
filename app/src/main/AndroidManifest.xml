@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activities.display.ReviewSendImageActivity"></activity>
+        <activity android:name=".view.activities.status.AddStatusPicActivity"></activity>
+        <activity android:name=".view.activities.display.ReviewSendImageActivity" />
         <activity android:name=".view.activities.profile.UserProfileActivity" />
         <activity android:name=".view.activities.chats.ChatsActivity" />
         <activity android:name=".view.activities.contact.ContactsActivity" />
@@ -38,7 +39,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.MainActivity" />
-
 
         <provider
             android:name="androidx.core.content.FileProvider"
