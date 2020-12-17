@@ -229,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private Uri imageUri= null;
+    public static Uri imageUri= null;
 
     private void openCamera() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -255,7 +255,8 @@ public class MainActivity extends AppCompatActivity {
                 && resultCode == RESULT_OK){
             //uploadToFirebase();
             if (imageUri!=null){
-                startActivity(new Intent(MainActivity.this, AddStatusPicActivity.class));
+                startActivity(new Intent(MainActivity.this, AddStatusPicActivity.class)
+                .putExtra("image",imageUri));
             }
         }
 

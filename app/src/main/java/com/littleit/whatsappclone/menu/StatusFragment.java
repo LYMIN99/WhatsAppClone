@@ -1,5 +1,6 @@
 package com.littleit.whatsappclone.menu;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.littleit.whatsappclone.R;
 import com.littleit.whatsappclone.databinding.FragmentStatusBinding;
+import com.littleit.whatsappclone.view.activities.status.DisplayStatusActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,6 +40,12 @@ public class StatusFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_status, container, false);
 
         getProfile();
+        binding.lnStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().startActivity(new Intent(getContext(), DisplayStatusActivity.class));
+            }
+        });
         return binding.getRoot();
     }
 

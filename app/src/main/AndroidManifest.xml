@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activities.status.AddStatusPicActivity"></activity>
+        <activity android:name=".view.activities.status.DisplayStatusActivity"></activity>
+        <activity android:name=".view.activities.status.AddStatusPicActivity" />
         <activity android:name=".view.activities.display.ReviewSendImageActivity" />
         <activity android:name=".view.activities.profile.UserProfileActivity" />
         <activity android:name=".view.activities.chats.ChatsActivity" />

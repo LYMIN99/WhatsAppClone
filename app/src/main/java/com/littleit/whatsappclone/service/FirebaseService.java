@@ -9,9 +9,11 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.littleit.whatsappclone.model.StatusModel;
 
 import java.util.HashMap;
 
@@ -57,5 +59,29 @@ public class FirebaseService {
     public interface OnCallBack{
         void onUploadSuccess(String imageUrl);
         void onUploadFailed(Exception e);
+    }
+
+    public void addNewStatus(StatusModel statusModel, final OnAddNewStatusCallBack onAddNewStatusCallBack){
+        //
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+        firebaseFirestore.collection("Status Daily").document(statusModel.getId()).set(statusModel)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                onAddNewStatusCallBack.onSuccess();
+            }
+        })
+        .addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                onAddNewStatusCallBack.onFailed();
+            }
+        });
+
+    }
+
+    public interface OnAddNewStatusCallBack{
+        void onSuccess();
+        void onFailed();
     }
 }

@@ -45,6 +45,10 @@ public class ChatService {
         this.receiverID = receiverID;
     }
 
+    public ChatService(Context context) {
+        this.context = context;
+    }
+
     public void readChatData(final OnReadChatCallBack onCallBack){
         reference.child("Chats").addValueEventListener(new ValueEventListener() {
             @Override
