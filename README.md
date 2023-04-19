@@ -1,6 +1,4 @@
 # WhatsAppClone
-Please Subscribe my YouTube Channel: Little IT Coding
+Please Subscribe my YouTube Channel: Lymin Coding
 
-Link  : https://www.youtube.com/channel/UCcR3ptaFQ9idC43q4STCFMw
-donate me paypal : 
-lymin007@gmail.com
+Link  : https://www.youtube.com/channel/UCBhGSCgrcR6IlvhY_YGz09Q
